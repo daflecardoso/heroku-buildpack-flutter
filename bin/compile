@@ -108,11 +108,11 @@ if [ "$FLUTTER_CLEANUP" != false ]; then
 
   mkdir -p $BUILD_DIR/TO_DELETE
   
-  print "✅ moving server"
-  cp server.js TO_DELETE/build/web/
+#   print "✅ moving server"
+#   cp server.js TO_DELETE/build/web/
 
-  print "✅ moving package.json"
-  cp package.json TO_DELETE/build/web/
+#   print "✅ moving package.json"
+#   cp package.json TO_DELETE/build/web/
 
   mv !("TO_DELETE") TO_DELETE
   mv TO_DELETE/build/web/* $BUILD_DIR
