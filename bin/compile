@@ -134,3 +134,8 @@ cp -R $PUB_CACHE $BUILD_DIR
 
 export PATH="$PATH":"/app/dart-sdk/bin/"
 export PATH="$PATH":"/app/.pub-cache/bin"
+
+cd /app
+ls -la
+
+echo "✅ done!"
