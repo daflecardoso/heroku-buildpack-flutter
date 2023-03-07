@@ -111,6 +111,40 @@ if [ "$FLUTTER_CLEANUP" != false ]; then
 
 fi
 
+tee -a package.json <<EOF
+{
+  "name": "project",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1"
+  }
+}
+EOF
+
+tee -a app.js <<EOF
+const express = require('express');
+const path = require('path');
+const app = express();
+const PORT = process.env.PORT || 8080;
+
+app.use(express.static(path.join(__dirname, 'build', 'web')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'web', 'index.html'));
+});
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
+EOF
+
 ls -la
 
 print "✅ All done"
