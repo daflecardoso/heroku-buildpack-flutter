@@ -102,8 +102,8 @@ shopt -s extglob
 
 print "👉 checking were im"
 
-print "✅ moving server"
-cp server.js $BUILD_DIR
+print "✅ moving app.js"
+cp app.js $BUILD_DIR
 
 print "✅ moving package.json"
 cp package.json $BUILD_DIR
