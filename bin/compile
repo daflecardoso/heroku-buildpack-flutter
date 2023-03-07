@@ -79,7 +79,7 @@ flutter/bin/flutter pub get --quiet | indent
 PATH="$PATH":"$(pwd)/flutter/bin/"
 
 if [ -z "$FLUTTER_BUILD" ]; then
-  FLUTTER_BUILD="flutter build web --release --quiet"
+  FLUTTER_BUILD="flutter build web --web-renderer html --release --quiet"
 fi
 
 print "Compiling the project with $FLUTTER_BUILD"
