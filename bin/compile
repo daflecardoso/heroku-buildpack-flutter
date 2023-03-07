@@ -85,57 +85,6 @@ fi
 print "👉 Compiling the project with $FLUTTER_BUILD"
 eval $FLUTTER_BUILD | indent
 
-PUB_CACHE="$HOME/.pub-cache/"
-mkdir -p $PUB_CACHE
-
-# Saving SDK in Cache and in app.
-if [ -x flutter/bin/flutter ]; then
-  print "👉 Saving Flutter SDK in Cache"
-  rm -rf $CACHE_DIR/flutter
-  cp -R $BUILD_DIR/flutter $CACHE_DIR/flutter
-  mv $BUILD_DIR/flutter/bin/cache/dart-sdk/ $BUILD_DIR
-  rm -rf $BUILD_DIR/flutter
-fi
-
-#  To read hidden directories and use move with exclusion.
-shopt -s extglob
-
-# Check  FLUTTER_CLEANUP var to delete all files or keep it.
-if [ "$FLUTTER_CLEANUP" != false ]; then
-
-  mkdir -p $BUILD_DIR/TO_DELETE
-
-  mv !("TO_DELETE") TO_DELETE
-  mv TO_DELETE/build/web/* $BUILD_DIR
-  mv TO_DELETE/dart-sdk $BUILD_DIR
-  rm -rf TO_DELETE
-
-fi
-
-# Activate dhttpd dart package to run the server.
-# Is taken from my Github repo because some variables need to be changed every run
-# like PORT from environment.
-
-if [ -d "$CACHE_DIR/.pub-cache/" ]; then
-  print "dhttpd Found in cache. Restoring."
-  cp -R $CACHE_DIR/.pub-cache/* $PUB_CACHE
-else
-  print "Getting dhttpd to run web service."
-  $BUILD_DIR/dart-sdk/bin/dart pub global activate -sgit https://github.com/diezep/dhttpd.git | indent
-
-  print "Getting dhtppd to run web service."
-  mkdir -p $CACHE_DIR/.pub-cache/
-  cp -R $PUB_CACHE/* $CACHE_DIR/.pub-cache/
-fi
-
-# Moving to the build, after running the compile. All will be deleted and removed to app directory.
-# Copying the result, the files will be kept in storage.
-cp -R $PUB_CACHE $BUILD_DIR
-
-export PATH="$PATH":"/app/dart-sdk/bin/"
-export PATH="$PATH":"/app/.pub-cache/bin"
-
-cd /app
 ls -la
 
-print "✅ done!"
+print "✅ All done!"
