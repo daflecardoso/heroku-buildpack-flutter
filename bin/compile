@@ -100,11 +100,15 @@ fi
 #  To read hidden directories and use move with exclusion.
 shopt -s extglob
 
+print "👉 checking were im"
+ls -la
+
+
 print "✅ moving server"
-cp server.js TO_DELETE/build/web/
+cp server.js $BUILD_DIR
 
 print "✅ moving package.json"
-cp package.json TO_DELETE/build/web/
+cp package.json $BUILD_DIR
 
 # Check  FLUTTER_CLEANUP var to delete all files or keep it.
 if [ "$FLUTTER_CLEANUP" != false ]; then
