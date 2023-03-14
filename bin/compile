@@ -82,11 +82,12 @@ print "-------⚠️ env variables ⚠️----------"
 
 print "$FLAVOR"
 print "$NODE_OPTIONS"
+print "$API_URL"
 
 print "-------⚠️ env variables ⚠️----------"
 
 if [ -z "$FLUTTER_BUILD" ]; then
-  FLUTTER_BUILD="flutter build web --dart-define="FLAVOR=$FLAVOR" --web-renderer html --release --quiet"
+  FLUTTER_BUILD="flutter build web --dart-define="FLAVOR=$FLAVOR" --dart-define=API_URL=$API_URL --web-renderer html --release --quiet"
 fi
 
 print "Compiling the project with $FLUTTER_BUILD"
