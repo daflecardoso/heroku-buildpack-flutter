@@ -28,8 +28,8 @@ function indent() {
 
 print "------- env variables ----------"
 
-print $FLAVOR
-print $NODE_OPTIONS
+print "$FLAVOR"
+print "$NODE_OPTIONS"
 
 print "------- env variables ----------"
 
