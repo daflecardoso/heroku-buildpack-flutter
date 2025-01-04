@@ -153,9 +153,6 @@ app.listen(PORT, () => {
 });
 EOF
 
-npm install
-
-
 ls -la
 
 print "✅ All done!"
